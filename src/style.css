@@ -31,6 +31,8 @@ h2{
   display: flex;
   flex-direction: row;
   margin-left: 250px;
+  max-width: 900px;
+  flex-wrap: wrap;
 }
 .seeMore{
   background-color: #ccc; /* Green */
