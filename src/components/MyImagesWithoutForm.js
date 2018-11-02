@@ -3,10 +3,11 @@ import Img from './Img'
 import withSpinner from './withSpinner'
 import Apiclient from '../services/ApiClient'
 import ContactForm from './ContactForm'
-import MyImagesWithoutForm from './MyImagesWithoutForm'
-class My_images extends Component{
 
-/*
+
+class MyImagesWithoutForm extends Component{
+
+
     constructor(props) {
       super(props);
       this.state = {
@@ -36,16 +37,26 @@ class My_images extends Component{
       });
   }
 
-*/
+
 
 
   render(){
     return (
-      <div className="formAndImages">
-        <MyImagesWithoutForm/>
-        <ContactForm/>
+      <div id="container">
+        <div className="imgsAndButton">
+          <div id="my_images">
+          {
+              this.state.breeds.map((item,index) => {
+                return <Img key= {index} className="class1" imgSrc={item} url={item} title={`title ${index}`}/>;
+              })
+          }
+          </div>
+          <div id="my_button" >
+            <button className="seeMore" onClick={() => this.handleFetch(3)}>See more</button>
+          </div>
+        </div>
       </div>
     )
   }
 }
-export default withSpinner(My_images);
+export default MyImagesWithoutForm

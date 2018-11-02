@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import Img from './components/Img'
-import About from './components/About'
-import Navbar from './components/Navbar'
-import './style.css';
-import data from './data'
+import {BrowserRouter, Route } from 'react-router-dom';
 
-import My_images from './components/My_images'
-import {BrowserRouter, Route } from 'react-router-dom'
+//import Img from './components/Img';
+import About from './components/About';
+import Navbar from './components/Navbar';
+import './style.css';
+import AllBreeds from './components/AllBreeds'
+import My_images from './components/My_images';
 
 class App extends Component{
 
@@ -21,11 +21,12 @@ render(){
 
           <Route exact={true} path="/" component={My_images} />
           <Route path="/randombreed" component={About} />
+          <Route path="/allbreeds" component={AllBreeds} />
         </div>
       </BrowserRouter>
 
 
-    )
+    );
   }
 }
 
