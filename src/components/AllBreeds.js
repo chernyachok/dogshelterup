@@ -4,15 +4,19 @@ import MyImagesWithoutForm from './MyImagesWithoutForm';
 import ApiClient from '../services/ApiClient';
 import {lorem} from './LoremIpsum'
 import Footer from './Footer'
+import PropTypes from 'prop-types';
 
-console.log(lorem);
+//console.log(lorem);
 class AllBreeds extends Component{
   constructor(props){
     super(props);
     this.state = {
-      randomOneImg : ''
+      randomImgs : []
     }
   }
+  static propTypes = {
+   randomImgs: PropTypes.string
+ }
 
   componentDidMount(){
     this.handleFetch();
@@ -20,19 +24,19 @@ class AllBreeds extends Component{
   render(){
     return (
       <div>
-        <div className="randomOneImg"><img src={this.state.randomOneImg} heigth="250" width="250"/><br/>{lorem }</div>
+        <div className="randomOneImg"><img src={this.state.randomImgs[0]} heigth="250" width="250"/><br/>{lorem }</div>
         <MyImagesWithoutForm/>
-        <Footer/>
+        <Footer imgs={this.state.randomImgs.slice(1)}/>
       </div>
     )
   }
 
   handleFetch = ()=>{
-    ApiClient.get(`https://dog.ceo/api/breeds/image/random`)
+    ApiClient.get(`https://dog.ceo/api/breeds/image/random/5`)
       .then((data) => {
       //  console.log('DATA ONE', data);
         this.setState({
-          randomOneImg: data.message
+          randomImgs: data.message
         })
       });
   }
