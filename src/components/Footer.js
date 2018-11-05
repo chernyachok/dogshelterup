@@ -19,8 +19,7 @@ const Footer = (props) => {
 }
 
 let handleSubmit = (e) => {
-  console.log('submitted');
-  e.preventDefault()
+  e.preventDefault();
 }
 
-export default Footer
+export default Footer;

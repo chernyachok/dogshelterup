@@ -1,48 +1,33 @@
 import React, {Component} from 'react';
-import Img from './Img'
-import withSpinner from './withSpinner'
+import Img from './Img';
+import withSpinner from './withSpinner';
 import ApiClient from '../services/ApiClient'
-import ContactForm from './ContactForm'
-
+import ContactForm from './ContactForm';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+import {addBreed} from '../actions';
 
 class MyImagesWithoutForm extends Component{
 
-
-    constructor(props) {
-      super(props);
-      this.state = {
-        breeds: [],
-        downloading: false
-      };
-    }
-
-    componentDidMount() {
-      this.handleFetch(3);
-    }
-
-
-   handleFetch = async (param) => {
-    this.setState({
-      downloading: true
-    })
-    let currentBreeds = this.state.breeds;
-    let data =  await ApiClient.get(`https://dog.ceo/api/breeds/image/random/${param}`);
-    currentBreeds = currentBreeds.concat(data.message);
-    this.setState({breeds: currentBreeds, downloading: false});
-  }
-
-
-
-
   render(){
+    const {breeds} = this.props;
+    const currentBreeds = breeds.length
+          ?
+          (
+            breeds.map((item,index) => {
+            return <Link to={"/"+item.id}><Img key= {index} className="class1" src={item.src} title={`Dog  ${index}`}/></Link>
+          })
+          )
+          :
+          (
+            <div className="center">No breeds in collection.</div>
+          )
     return (
       <div id="container">
         <div className="imgsAndButton">
           <div id="my_images">
           {
-              this.state.breeds.map((item,index) => {
-                return <Img key= {index} className="class1" imgSrc={item} url={item} title={`title ${index}`}/>;
-              })
+            currentBreeds
           }
           </div>
           <div id="my_button" >
@@ -52,5 +37,29 @@ class MyImagesWithoutForm extends Component{
       </div>
     )
   }
+
+  handleFetch = async (param) => {
+   const {breeds} = this.props;
+   const newBreeds = await ApiClient.get(`https://dog.ceo/api/breeds/image/random/${param}`);
+   let newBreedsObj =[];
+   newBreeds.message.forEach((dog, index) => {
+     const id = Math.floor(Math.random()*1000);
+     newBreedsObj.push({id, src:newBreeds.message[index]})
+   });
+   this.props.addBreed(newBreedsObj);
+ }
 }
-export default MyImagesWithoutForm
+
+const mapStateToProps = (state,ownProps) => {
+  return {
+    breeds: state.breeds
+  }
+}
+
+const mapDispatchToProps = (dispatch) => {
+  return ({
+    addBreed: (newBreed) => dispatch(addBreed(newBreed))
+  })
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(MyImagesWithoutForm);

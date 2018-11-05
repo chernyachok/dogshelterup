@@ -1,4 +1,7 @@
 import React, {Component} from 'react';
+import {createStore} from 'redux';
+import {Provider} from 'react-redux';
+
 import Img from './Img'
 import withSpinner from './withSpinner'
 import Apiclient from '../services/ApiClient'

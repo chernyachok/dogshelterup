@@ -2,7 +2,7 @@ import React, {Component} from 'react';
 
 import MyImagesWithoutForm from './MyImagesWithoutForm';
 import ApiClient from '../services/ApiClient';
-import {lorem} from './LoremIpsum'
+import {lorem} from '../RandomData/LoremIpsum'
 import Footer from './Footer'
 import PropTypes from 'prop-types';
 
