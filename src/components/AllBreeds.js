@@ -22,23 +22,20 @@ class AllBreeds extends Component{
     this.handleFetch();
   }
   render(){
+    const [first, ...rest] = this.state.randomImgs;
     return (
       <div>
         <div className="randomOneImg"><img src={this.state.randomImgs[0]} heigth="250" width="250"/><br/>{lorem }</div>
         <MyImagesWithoutForm/>
-        <Footer imgs={this.state.randomImgs.slice(1)}/>
+        <Footer imgs={rest}/>
       </div>
     )
   }
 
-  handleFetch = ()=>{
-    ApiClient.get(`https://dog.ceo/api/breeds/image/random/5`)
-      .then((data) => {
-      //  console.log('DATA ONE', data);
-        this.setState({
-          randomImgs: data.message
-        })
-      });
+  handleFetch =async ()=>{
+    let currentBreeds = this.state.breeds;
+    let data =  await ApiClient.get(`https://dog.ceo/api/breeds/image/random/5`);
+    this.setState({randomImgs: data.message})
   }
 }
 

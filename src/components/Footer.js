@@ -1,26 +1,26 @@
 import React, {Component} from 'react';
 
-class Footer extends Component{
-  constructor(props){
-    super(props)
+const Footer = (props) => {
 
-  }
-  render(){
     return (
       <div className="footer">
         <h2>Look at our dogs</h2><br/>
-        <form>
+        <form onSubmit={handleSubmit}>
           <input type="text" /><br/>
-          <button>Find more</button>
+          <input type="submit" value='Find more'/>
         </form>
         {
-          this.props.imgs.map((item,i)=>
+          props.imgs.map((item,i)=>
           <img src={item} heigth="250" width="250"/>
           )
         }
       </div>
     )
-  }
+}
+
+let handleSubmit = (e) => {
+  console.log('submitted');
+  e.preventDefault()
 }
 
 export default Footer

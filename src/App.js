@@ -1,12 +1,12 @@
 import React, { Component } from 'react';
-import {BrowserRouter, Route } from 'react-router-dom';
+import {BrowserRouter, Route, Switch } from 'react-router-dom';
 
 //import Img from './components/Img';
 import About from './components/About';
 import Navbar from './components/Navbar';
 import './style.css';
 import AllBreeds from './components/AllBreeds'
-import My_images from './components/My_images';
+import MyImages from './components/MyImages';
 
 class App extends Component{
 
@@ -18,10 +18,12 @@ render(){
       <BrowserRouter>
         <div className="routercontainer">
         <Navbar />
+          <Switch>
+            <Route exact path="/" component={MyImages} />
+            <Route path="/randombreed" component={About} />
+            <Route path="/allbreeds" component={AllBreeds} />
+          </Switch>
 
-          <Route exact={true} path="/" component={My_images} />
-          <Route path="/randombreed" component={About} />
-          <Route path="/allbreeds" component={AllBreeds} />
         </div>
       </BrowserRouter>
 

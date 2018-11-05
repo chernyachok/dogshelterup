@@ -1,7 +1,7 @@
 import React, {Component} from 'react';
 import Img from './Img'
 import withSpinner from './withSpinner'
-import Apiclient from '../services/ApiClient'
+import ApiClient from '../services/ApiClient'
 import ContactForm from './ContactForm'
 
 
@@ -21,20 +21,14 @@ class MyImagesWithoutForm extends Component{
     }
 
 
-  handleFetch = (param) => {
-    //console.log('---',param);
+   handleFetch = async (param) => {
     this.setState({
       downloading: true
     })
     let currentBreeds = this.state.breeds;
-    Apiclient.get(`https://dog.ceo/api/breeds/image/random/${param}`)
-      .then((data) => {
-
-        currentBreeds = currentBreeds.concat(data.message);
-
-        //console.log('CURENTBREDS', currentBreeds);
-        this.setState({breeds: currentBreeds, downloading: false})
-      });
+    let data =  await ApiClient.get(`https://dog.ceo/api/breeds/image/random/${param}`);
+    currentBreeds = currentBreeds.concat(data.message);
+    this.setState({breeds: currentBreeds, downloading: false});
   }
 
 

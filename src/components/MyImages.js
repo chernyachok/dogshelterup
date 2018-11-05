@@ -4,7 +4,7 @@ import withSpinner from './withSpinner'
 import Apiclient from '../services/ApiClient'
 import ContactForm from './ContactForm'
 import MyImagesWithoutForm from './MyImagesWithoutForm'
-class My_images extends Component{
+class MyImages extends Component{
 
   render(){
     return (
@@ -15,4 +15,4 @@ class My_images extends Component{
     )
   }
 }
-export default withSpinner(My_images);
+export default withSpinner(MyImages);
