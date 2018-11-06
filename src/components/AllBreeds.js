@@ -1,4 +1,5 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
 
 import MyImagesWithoutForm from './MyImagesWithoutForm';
 import ApiClient from '../services/ApiClient';
@@ -15,19 +16,26 @@ class AllBreeds extends Component{
     }
   }
   static propTypes = {
-   randomImgs: PropTypes.string
+   randomImgs: PropTypes.array
  }
 
   componentDidMount(){
     this.handleFetch();
   }
   render(){
-    const [first, ...rest] = this.state.randomImgs;
-    return (
+    const [first, ...rest] = this.props.breeds;
+    const myImages = rest.length ? (
       <div>
-        <div className="randomOneImg"><img src={this.state.randomImgs[0]} heigth="250" width="250"/><br/>{lorem }</div>
+        <div className="randomOneImg"><img src={first.src} heigth="250" width="250"/><br/>{lorem }</div>
         <MyImagesWithoutForm/>
         <Footer imgs={rest}/>
+      </div>
+    )
+    :
+    this.props.history.push('/')
+    return (
+      <div>
+            {myImages}
       </div>
     )
   }
@@ -39,4 +47,10 @@ class AllBreeds extends Component{
   }
 }
 
-export default AllBreeds;
+const mapStateToProps = (state, ownProps) => {
+  return {
+    breeds: state.breeds
+  }
+}
+
+export default connect(mapStateToProps)(AllBreeds);

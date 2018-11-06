@@ -11,7 +11,7 @@ const Footer = (props) => {
         </form>
         {
           props.imgs.map((item,i)=>
-          <img src={item} heigth="250" width="250"/>
+          <img src={item.src} heigth="250" width="250"/>
           )
         }
       </div>
