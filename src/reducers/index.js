@@ -19,6 +19,13 @@ const myReducer = (state = initState,action) => {
       breeds
     }
   }
+  if(action.type === 'DELETE_ALL_BREEDS'){
+    const breeds = [];
+    return {
+      ...state,
+      breeds
+    }
+  }
   return state;
 }
 

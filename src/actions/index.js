@@ -1,5 +1,6 @@
 const ADD_BREED = 'ADD_BREED';
 const DELETE_BREED = 'DELETE_BREED';
+const DELETE_ALL_BREEDS = 'DELETE_ALL_BREEDS';
 //const RECEIVE_INITIAL_BREEDS = 'RECEIVE_INITIAL_BREEDS';
 
 export const addBreed = (newBreed) => {
@@ -13,6 +14,13 @@ export const deleteBreed = (id) => {
   return {
     type: DELETE_BREED,
     payload: id
+  }
+}
+
+export const deleteAllBreeds = () => {
+  return {
+    type: DELETE_ALL_BREEDS,
+    payload: null
   }
 }
 

@@ -9,19 +9,11 @@ import PropTypes from 'prop-types';
 
 //console.log(lorem);
 class AllBreeds extends Component{
-  constructor(props){
-    super(props);
-    this.state = {
-      randomImgs : []
-    }
-  }
+
   static propTypes = {
    randomImgs: PropTypes.array
  }
 
-  componentDidMount(){
-    this.handleFetch();
-  }
   render(){
     const [first, ...rest] = this.props.breeds;
     const myImages = rest.length ? (
@@ -39,14 +31,7 @@ class AllBreeds extends Component{
       </div>
     )
   }
-
-  handleFetch = async () => {
-    let currentBreeds = this.state.breeds;
-    let data =  await ApiClient.get(`https://dog.ceo/api/breeds/image/random/5`);
-    this.setState({randomImgs: data.message});
-  }
 }
-
 const mapStateToProps = (state, ownProps) => {
   return {
     breeds: state.breeds

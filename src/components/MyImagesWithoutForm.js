@@ -5,7 +5,7 @@ import ApiClient from '../services/ApiClient'
 import ContactForm from './ContactForm';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {addBreed, receiveInitialBreeds} from '../actions';
+import {addBreed, receiveInitialBreeds, deleteAllBreeds} from '../actions';
 
 class MyImagesWithoutForm extends Component{
 
@@ -36,6 +36,7 @@ class MyImagesWithoutForm extends Component{
           </div>
           <div id="my_button" >
             <button className="seeMore" onClick={() => this.handleFetch(3)}>See more</button>
+              <button className="seeMore" onClick={() => this.props.deleteAllBreeds()}>Remove all breeds</button>
           </div>
         </div>
       </div>
@@ -63,6 +64,7 @@ const mapStateToProps = (state,ownProps) => {
 const mapDispatchToProps = (dispatch) => {
   return ({
     addBreed: (newBreed) => dispatch(addBreed(newBreed)),
+    deleteAllBreeds: () => dispatch(deleteAllBreeds()),
     receiveBreeds: (newBreeds) => dispatch(receiveInitialBreeds(newBreeds))
   })
 }
