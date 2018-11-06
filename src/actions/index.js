@@ -1,6 +1,6 @@
 const ADD_BREED = 'ADD_BREED';
 const DELETE_BREED = 'DELETE_BREED';
-const RECEIVE_INITIAL_BREEDS = 'RECEIVE_INITIAL_BREEDS';
+//const RECEIVE_INITIAL_BREEDS = 'RECEIVE_INITIAL_BREEDS';
 
 export const addBreed = (newBreed) => {
   return {
@@ -17,8 +17,13 @@ export const deleteBreed = (id) => {
 }
 
 export const receiveInitialBreeds = (newBreeds) => {
-  return {
-    type: RECEIVE_INITIAL_BREEDS,
-    payload: newBreeds
+  return (dispatch, getState) => {
+    fetch('https://dog.ceo/api/breeds/image/random/3')
+      .then(res => res.json())
+        .then(data => {
+          const breeds = [];
+          data.message.forEach((item, index) => breeds.push({id: Math.floor(Math.random()*1000), src: data.message[index]}))
+          dispatch(addBreed(breeds));
+        })
   }
 }

@@ -10,7 +10,7 @@ import {addBreed, receiveInitialBreeds} from '../actions';
 class MyImagesWithoutForm extends Component{
 
   componentDidMount(){
-
+    this.props.receiveBreeds()
   }
 
   render(){
@@ -62,7 +62,8 @@ const mapStateToProps = (state,ownProps) => {
 
 const mapDispatchToProps = (dispatch) => {
   return ({
-    addBreed: (newBreed) => dispatch(addBreed(newBreed))
+    addBreed: (newBreed) => dispatch(addBreed(newBreed)),
+    receiveBreeds: (newBreeds) => dispatch(receiveInitialBreeds(newBreeds))
   })
 }
 
