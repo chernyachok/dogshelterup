@@ -6,7 +6,7 @@ import PropTypes from 'prop-types';
 const StyledP = styled.div`
   color: #524723;
   background: red;
-`
+`;
 
 class ContactForm extends Component{
   render(){
@@ -23,4 +23,4 @@ class ContactForm extends Component{
   }
 }
 
-export default ContactForm
+export default ContactForm;

@@ -32,11 +32,11 @@ class AllBreeds extends Component{
     )
   }
 
-  handleFetch =async ()=>{
+  handleFetch = async () => {
     let currentBreeds = this.state.breeds;
     let data =  await ApiClient.get(`https://dog.ceo/api/breeds/image/random/5`);
-    this.setState({randomImgs: data.message})
+    this.setState({randomImgs: data.message});
   }
 }
 
-export default AllBreeds
+export default AllBreeds;

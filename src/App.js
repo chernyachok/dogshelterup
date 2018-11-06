@@ -13,7 +13,7 @@ class App extends Component{
 render(){
     return (
       <BrowserRouter>
-        <div className="routercontainer">
+        <div className="routerContainer">
         <Navbar />
           <Switch>
             <Route exact path="/" component={MyImages} />

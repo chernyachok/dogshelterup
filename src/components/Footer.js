@@ -18,7 +18,7 @@ const Footer = (props) => {
     )
 }
 
-let handleSubmit = (e) => {
+const handleSubmit = (e) => {
   e.preventDefault();
 }
 
