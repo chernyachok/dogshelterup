@@ -6,6 +6,7 @@ import Navbar from './components/Navbar';
 import './style.css';
 import AllBreeds from './components/AllBreeds'
 import MyImages from './components/MyImages';
+import SingleBreed from './components/SingleBreed';
 
 class App extends Component{
 
@@ -17,6 +18,7 @@ render(){
           <Switch>
             <Route exact path="/" component={MyImages} />
             <Route path="/allbreeds" component={AllBreeds} />
+            <Route path="/:breed_id" component={SingleBreed} />
           </Switch>
         </div>
       </BrowserRouter>

@@ -5,9 +5,13 @@ import ApiClient from '../services/ApiClient'
 import ContactForm from './ContactForm';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import {addBreed} from '../actions';
+import {addBreed, receiveInitialBreeds} from '../actions';
 
 class MyImagesWithoutForm extends Component{
+
+  componentDidMount(){
+
+  }
 
   render(){
     const {breeds} = this.props;
