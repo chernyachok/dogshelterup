@@ -4,7 +4,7 @@ import {connect} from 'react-redux';
 import MyImagesWithoutForm from './MyImagesWithoutForm';
 import ApiClient from '../services/ApiClient';
 import {lorem} from '../RandomData/LoremIpsum'
-import Footer from './Footer'
+import Footer from '../components/Footer';
 import PropTypes from 'prop-types';
 
 //console.log(lorem);
@@ -12,7 +12,7 @@ class AllBreeds extends Component{
 
   static propTypes = {
    randomImgs: PropTypes.array
- }
+  };
 
   render(){
     const [first, ...rest] = this.props.breeds;

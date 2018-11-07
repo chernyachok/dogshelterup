@@ -1,7 +1,6 @@
 import React, {Component} from 'react';
 
-import styled from 'styled-components'
-import PropTypes from 'prop-types';
+import styled from 'styled-components';
 
 const StyledP = styled.div`
   color: #524723;
@@ -19,7 +18,7 @@ class ContactForm extends Component{
           <input type="submit" value="Submit" id="do_submit"/>
         </form>
       </div>
-    )
+    );
   }
 }
 

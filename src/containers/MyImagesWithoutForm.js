@@ -1,11 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
+import { createSelector } from 'reselect';
 
-import Img from './Img';
-import withSpinner from './withSpinner';
+import Img from '../components/Img';
+import withSpinner from '../components/withSpinner';
 import ApiClient from '../services/ApiClient'
-import ContactForm from './ContactForm';
+import ContactForm from '../components/ContactForm';
 
 import {addBreed, receiveInitialBreeds, deleteAllBreeds} from '../actions';
 
@@ -43,29 +44,24 @@ class MyImagesWithoutForm extends Component{
         </div>
       </div>
     )
-  }
+  };
 
-  handleFetch = async (param) => {
-   const {breeds} = this.props;
-   const newBreeds = await ApiClient.get(`https://dog.ceo/api/breeds/image/random/${param}`);
-   let newBreedsObj =[];
-   newBreeds.message.forEach((dog, index) => {
-     const id = Math.floor(Math.random()*1000);
-     newBreedsObj.push({id, src:newBreeds.message[index]})
-   });
-   this.props.addBreed(newBreedsObj);
+  handleFetch = (param) => {
+   this.props.addBreed(`https://dog.ceo/api/breeds/image/random/3`);
  }
 }
 
+const getAllBreeds = state => state.breedsReducer.breeds;
+
 const mapStateToProps = (state,ownProps) => {
   return {
-    breeds: state.breedsReducer.breeds
+    breeds: getAllBreeds(state)
   }
 }
 
 const mapDispatchToProps = (dispatch) => {
   return ({
-    addBreed: (newBreed) => dispatch(addBreed(newBreed)),
+    addBreed: (url) => dispatch(addBreed(url)),
     deleteAllBreeds: () => dispatch(deleteAllBreeds()),
     receiveBreeds: () => dispatch(receiveInitialBreeds())
   })

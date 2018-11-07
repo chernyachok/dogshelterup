@@ -6,10 +6,10 @@ import {
   RECEIVE_INITIAL_BREEDS
 } from './types';
 
-export const addBreed = (newBreed) => {
+export const addBreed = (url) => {
   return {
     type: ADD_BREED,
-    payload: newBreed
+    payload: ApiClient.get(url)
   }
 }
 

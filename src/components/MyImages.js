@@ -1,12 +1,7 @@
 import React, {Component} from 'react';
-import {createStore} from 'redux';
-import {Provider} from 'react-redux';
-
-import Img from './Img'
-import withSpinner from './withSpinner'
-import Apiclient from '../services/ApiClient'
-import ContactForm from './ContactForm'
-import MyImagesWithoutForm from './MyImagesWithoutForm'
+import withSpinner from './withSpinner';
+import ContactForm from './ContactForm';
+import MyImagesWithoutForm from '../containers/MyImagesWithoutForm';
 class MyImages extends Component{
 
   render(){
@@ -15,7 +10,7 @@ class MyImages extends Component{
         <MyImagesWithoutForm/>
         <ContactForm/>
       </div>
-    )
+    );
   }
 }
 export default withSpinner(MyImages);
