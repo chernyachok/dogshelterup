@@ -59,7 +59,7 @@ class MyImagesWithoutForm extends Component{
 
 const mapStateToProps = (state,ownProps) => {
   return {
-    breeds: state.breeds
+    breeds: state.breedsReducer.breeds
   }
 }
 

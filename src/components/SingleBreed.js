@@ -29,7 +29,7 @@ class SingleBreed extends Component{
 const mapStateToProps = (state, ownProps) => {
   const id = ownProps.match.params.breed_id;
   return {
-    breed: state.breeds.find(item => item.id == id)
+    breed: state.breedsReducer.breeds.find(item => item.id == id)
   }
 }
 
