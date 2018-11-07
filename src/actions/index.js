@@ -1,7 +1,10 @@
-const ADD_BREED = 'ADD_BREED';
-const DELETE_BREED = 'DELETE_BREED';
-const DELETE_ALL_BREEDS = 'DELETE_ALL_BREEDS';
-//const RECEIVE_INITIAL_BREEDS = 'RECEIVE_INITIAL_BREEDS';
+import ApiClient from '../services/ApiClient';
+import {
+  ADD_BREED,
+  DELETE_BREED,
+  DELETE_ALL_BREEDS,
+  RECEIVE_INITIAL_BREEDS
+} from './types';
 
 export const addBreed = (newBreed) => {
   return {
@@ -24,14 +27,16 @@ export const deleteAllBreeds = () => {
   }
 }
 
-export const receiveInitialBreeds = (newBreeds) => {
-  return (dispatch, getState) => {
-    fetch('https://dog.ceo/api/breeds/image/random/3')
-      .then(res => res.json())
-        .then(data => {
-          const breeds = [];
-          data.message.forEach((item, index) => breeds.push({id: Math.floor(Math.random()*1000), src: data.message[index]}))
-          dispatch(addBreed(breeds));
-        })
-  }
+export const receiveInitialBreeds = () => {
+    // fetch('https://dog.ceo/api/breeds/image/random/3')
+    //   .then(res => res.json())
+    //     .then(data => {
+    //       const breeds = [];
+    //       data.message.forEach((item, index) => breeds.push({id: Math.floor(Math.random()*1000), src: data.message[index]}))
+    //       dispatch(addBreed(breeds));
+    //     })
+    return {
+      type: RECEIVE_INITIAL_BREEDS,
+      payload: ApiClient.get('https://dog.ceo/api/breeds/image/random/3')
+    }
 }

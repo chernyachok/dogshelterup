@@ -1,10 +1,12 @@
 import React, {Component} from 'react';
+import {connect} from 'react-redux';
+import {Link} from 'react-router-dom';
+
 import Img from './Img';
 import withSpinner from './withSpinner';
 import ApiClient from '../services/ApiClient'
 import ContactForm from './ContactForm';
-import {connect} from 'react-redux';
-import {Link} from 'react-router-dom';
+
 import {addBreed, receiveInitialBreeds, deleteAllBreeds} from '../actions';
 
 class MyImagesWithoutForm extends Component{
@@ -65,7 +67,7 @@ const mapDispatchToProps = (dispatch) => {
   return ({
     addBreed: (newBreed) => dispatch(addBreed(newBreed)),
     deleteAllBreeds: () => dispatch(deleteAllBreeds()),
-    receiveBreeds: (newBreeds) => dispatch(receiveInitialBreeds(newBreeds))
+    receiveBreeds: () => dispatch(receiveInitialBreeds())
   })
 }
 
