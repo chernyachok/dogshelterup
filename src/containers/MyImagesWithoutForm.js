@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
 import {connect} from 'react-redux';
 import {Link} from 'react-router-dom';
-import { createSelector } from 'reselect';
 
 import Img from '../components/Img';
 import withSpinner from '../components/withSpinner';
 import ApiClient from '../services/ApiClient'
 import ContactForm from '../components/ContactForm';
-
+import { getAllBreeds } from '../selectors';
 import {addBreed, receiveInitialBreeds, deleteAllBreeds} from '../actions';
 
 class MyImagesWithoutForm extends Component{
@@ -19,14 +18,10 @@ class MyImagesWithoutForm extends Component{
   render(){
     const {breeds} = this.props;
     const currentBreeds = breeds.length
-          ?
-          (
-            breeds.map((item,index) => {
+          ? (breeds.map((item,index) => {
             return <Link to={"/"+item.id}><Img key= {index} className="class1" src={item.src} title={`Dog  ${index}`}/></Link>
-          })
-          )
-          :
-          (
+          }))
+          : (
             <div className="center">No breeds in collection.</div>
           )
     return (
@@ -51,7 +46,6 @@ class MyImagesWithoutForm extends Component{
  }
 }
 
-const getAllBreeds = state => state.breedsReducer.breeds;
 
 const mapStateToProps = (state,ownProps) => {
   return {

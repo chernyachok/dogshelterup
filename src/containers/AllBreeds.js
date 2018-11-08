@@ -6,6 +6,7 @@ import ApiClient from '../services/ApiClient';
 import {lorem} from '../RandomData/LoremIpsum'
 import Footer from '../components/Footer';
 import PropTypes from 'prop-types';
+import { getAllBreeds } from '../selectors';
 
 //console.log(lorem);
 class AllBreeds extends Component{
@@ -16,15 +17,16 @@ class AllBreeds extends Component{
 
   render(){
     const [first, ...rest] = this.props.breeds;
-    const myImages = rest.length ? (
+    if(!rest.length)
+      return this.props.history.push('/');
+    const myImages =(
       <div>
         <div className="randomOneImg"><img src={first.src} heigth="250" width="250"/><br/>{lorem }</div>
         <MyImagesWithoutForm/>
         <Footer imgs={rest}/>
       </div>
     )
-    :
-    this.props.history.push('/')
+    
     return (
       <div>
             {myImages}
@@ -34,7 +36,7 @@ class AllBreeds extends Component{
 }
 const mapStateToProps = (state, ownProps) => {
   return {
-    breeds: state.breedsReducer.breeds
+    breeds: getAllBreeds(state)
   }
 }
 

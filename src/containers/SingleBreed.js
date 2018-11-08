@@ -5,19 +5,18 @@ import {deleteBreed} from '../actions';
 
 class SingleBreed extends Component{
   render(){
-    let {breed} = this.props;
-    breed = breed ? (
+    const {breed} = this.props;
+    const breedToBeRendered = breed ? (
       <div>
         <img src={breed.src} width="250" height="250"/>
         <button className="btn btn-grey" onClick={this.deleteBreed}>Delete breed</button>
       </div>
     )
-    :
-    (
+    : (
       <div className="center">Loading...</div>
     )
     return (
-      <div className="collection-item">{breed}</div>
+      <div className="collection-item">{breedToBeRendered}</div>
     )
   }
   deleteBreed = () => {
