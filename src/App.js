@@ -4,9 +4,9 @@ import {BrowserRouter, Route, Switch } from 'react-router-dom';
 import About from './components/About';
 import Navbar from './components/Navbar';
 import './style.css';
-import AllBreeds from './containers/AllBreeds'
+import AllBreeds from './containers/AllBreeds/index.js'
 import MyImages from './components/MyImages';
-import SingleBreed from './containers/SingleBreed';
+import SingleBreed from './containers/SingleBreed/index.js';
 
 class App extends Component{
 

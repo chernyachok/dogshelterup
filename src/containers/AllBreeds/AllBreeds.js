@@ -1,14 +1,12 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
 
-import MyImagesWithoutForm from './MyImagesWithoutForm';
-import ApiClient from '../services/ApiClient';
-import {lorem} from '../RandomData/LoremIpsum'
-import Footer from '../components/Footer';
+import MyImagesWithoutForm from '../MyImagesWithoutForm';
+import ApiClient from '../../services/ApiClient';
+import {lorem} from '../../RandomData/LoremIpsum'
+import Footer from '../../components/Footer';
 import PropTypes from 'prop-types';
-import { getAllBreeds } from '../selectors';
 
-//console.log(lorem);
+
 class AllBreeds extends Component{
 
   static propTypes = {
@@ -26,7 +24,7 @@ class AllBreeds extends Component{
         <Footer imgs={rest}/>
       </div>
     )
-    
+
     return (
       <div>
             {myImages}
@@ -34,10 +32,5 @@ class AllBreeds extends Component{
     )
   }
 }
-const mapStateToProps = (state, ownProps) => {
-  return {
-    breeds: getAllBreeds(state)
-  }
-}
 
-export default connect(mapStateToProps)(AllBreeds);
+export default AllBreeds;

@@ -1,13 +1,12 @@
 import React, {Component} from 'react';
-import {connect} from 'react-redux';
+
 import {Link} from 'react-router-dom';
 
-import Img from '../components/Img';
-import withSpinner from '../components/withSpinner';
-import ApiClient from '../services/ApiClient'
-import ContactForm from '../components/ContactForm';
-import { getAllBreeds } from '../selectors';
-import {addBreed, receiveInitialBreeds, deleteAllBreeds} from '../actions';
+import Img from '../../components/Img';
+import withSpinner from '../../components/withSpinner';
+import ApiClient from '../../services/ApiClient'
+import ContactForm from '../../components/ContactForm';
+
 
 class MyImagesWithoutForm extends Component{
 
@@ -46,19 +45,4 @@ class MyImagesWithoutForm extends Component{
  }
 }
 
-
-const mapStateToProps = (state,ownProps) => {
-  return {
-    breeds: getAllBreeds(state)
-  }
-}
-
-const mapDispatchToProps = (dispatch) => {
-  return ({
-    addBreed: (url) => dispatch(addBreed(url)),
-    deleteAllBreeds: () => dispatch(deleteAllBreeds()),
-    receiveBreeds: () => dispatch(receiveInitialBreeds())
-  })
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(MyImagesWithoutForm);
+export default MyImagesWithoutForm;
